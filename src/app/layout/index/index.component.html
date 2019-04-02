@@ -1,129 +1,113 @@
 <main class="main-contain">
-    <div class="main-div">
-      <h3>活動消息：</h3>
+  <div class="main-div">
+    <h3>活動消息：</h3>
+  </div>
+
+  <div class="main-three-contain">
+    <div class="main-circle-title">
+      <h2 class="main-circle-title--word">一般股東</h2>
     </div>
 
-    <div class="main-three-contain">
-      <div class="main-circle-title">
-        <h2 class="main-circle-title--word">一般股東</h2>
-      </div>
-
-      <div class="main-circle-title">
-        <h2 class="main-circle-title--word">發行公司・ 股務代理機構</h2>
-      </div>
-
-      <div class="main-circle-title">
-        <h2 class="main-circle-title--word">專業機構法人</h2>
-      </div>
+    <div class="main-circle-title">
+      <h2 class="main-circle-title--word">發行公司・ 股務代理機構</h2>
     </div>
 
-    <div class="main-select">
-      <h2 class="main-select--word">新手上路</h2>
-      <h2 class="main-select--word">首次使用設定</h2>
+    <div class="main-circle-title">
+      <h2 class="main-circle-title--word">專業機構法人</h2>
     </div>
+  </div>
 
-    <section class="main-div-margin">
-      <h4 class="main-h4">股東會資訊</h4>
-      <div class="main-table-contain">
-        <div class="main-table-contain--query">
-          <div class="main-table-query--row">
-            <label>資料排序方式：</label>
-            <div class="main-table-query--row_btton">
-              <input type="text" name="sort">
-              <button class="main-table-query--button ">查詢</button>
-            </div>
-          </div>
+  <div class="main-select">
+    <h2 class="main-select--word">新手上路</h2>
+    <h2 class="main-select--word">首次使用設定</h2>
+  </div>
 
-          <div class="main-table-query--row">
-            <label>搜尋股東會：</label>
-            <div class="main-table-query--row_btton">
-              <input type="text" name="sort">
-              <button class="main-table-query--button ">查詢</button>
-            </div>
-          </div>
+  <section class="main-div-margin">
+    <h4 class="main-h4">股東會資訊</h4>
+    <div class="main-table-contain">
+      <div class="main-table-contain--query">
+        <div class="main-table-query--row">
+          <label>資料排序方式：</label>
+          <select [(ngModel)]="selected1">
+            <option *ngFor="let o of options1" [value]="o.value">
+              {{o.name}}
+            </option>
+          </select>
+          <button class="main-table-query--button" (click)="doSearch1()">查詢</button>
         </div>
 
-        <table id="meetinfo" class="c-cardTable">
-          <thead class="main-table-thead">
-            <tr>
-              <th class="main-thead_with--50">證券代號/名稱</th>
-              <th class="main-thead_with--40">股東會日期</th>
-              <th class="main-thead_with--100">投票起迄日期</th>
-              <th class="main-thead_with--50">股務單位</th>
-              <th class="main-thead_with--40">聯絡電話</th>
+        <div class="main-table-query--row">
+          <label>搜尋股東會：</label>
+          <select [(ngModel)]="selected2" (change)="keyword = ''">
+            <option *ngFor="let o of options2" [value]="o.value">
+              {{o.name}}
+            </option>
+          </select>
+          <input class="main-table-query--button" type="text" *ngIf="selected2 != '0'" [(ngModel)]="keyword" >
+          <button class="main-table-query--button" (click)="doSearch2()">查詢</button>
+        </div>
+      </div>
+
+      <table id="meetinfo" class="c-cardTable">
+        <thead class="main-table-thead">
+          <tr>
+            <th class="main-thead_with--50">證券代號/名稱</th>
+            <th class="main-thead_with--40">股東會日期</th>
+            <th class="main-thead_with--100">投票起迄日期</th>
+            <th class="main-thead_with--50">股務單位</th>
+            <th class="main-thead_with--40">聯絡電話</th>
+          </tr>
+        </thead>
+      </table>
+      <div class="c-cardTable-div">
+        <table class="c-cardTable">
+          <tbody>
+            <tr *ngFor="let meet of infoList">
+              <td class="main-table-td--center--50">{{meet.id}} {{meet.name}}</td>
+              <td class="main-table-td--center--40">{{meet.date}}</td>
+              <td class="main-table-td--center--100">{{meet.vote_s}} ~ {{meet.vote_e}}</td>
+              <td class="main-table-td--center--50">{{meet.unit}}</td>
+              <td class="main-table-td--center--40">{{meet.phone}}</td>
             </tr>
-          </thead>
+          </tbody>
         </table>
-        <div class="c-cardTable-div">
-          <table class="c-cardTable">
-            <tbody>
-              <tr>
-                <td class="main-table-td--center--50">6702 復興航空</td>
-                <td class="main-table-td--center--40">106/01/11</td>
-                <td class="main-table-td--center--100">105/12/27 ~ 106/01/08</td>
-                <td class="main-table-td--center--50">群益金鼎證券</td>
-                <td class="main-table-td--center--40">(02)2703-500</td>
-              </tr>
-              <tr>
-                <td class="main-table-td--center--50">6702 復興航空</td>
-                <td class="main-table-td--center--40">106/01/11</td>
-                <td class="main-table-td--center--100">105/12/27 ~ 106/01/08</td>
-                <td class="main-table-td--center--50">群益金鼎證券</td>
-                <td class="main-table-td--center--40">(02)2703-500</td>
-              </tr>
-              <tr>
-                <td class="main-table-td--center--50">6702 復興航空</td>
-                <td class="main-table-td--center--40">106/01/11</td>
-                <td class="main-table-td--center--100">105/12/27 ~ 106/01/08</td>
-                <td class="main-table-td--center--50">群益金鼎證券</td>
-                <td class="main-table-td--center--40">(02)2703-500</td>
-              </tr>
-              <tr>
-                <td class="main-table-td--center--50">6702 復興航空</td>
-                <td class="main-table-td--center--40">106/01/11</td>
-                <td class="main-table-td--center--100">105/12/27 ~ 106/01/08</td>
-                <td class="main-table-td--center--50">群益金鼎證券</td>
-                <td class="main-table-td--center--40">(02)2703-500</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
+    </div>
 
-      <div class="main-connect-contain">
-        <table class="main-connect-table">
-          <tr>
-            <th>
-              <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
-            </th>
-            <th>
-              <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
-            </th>
-            <th>
-              <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
-            </th>
-          </tr>
-          <tr>
-            <th>
-              <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
-            </th>
-            <th>
-              <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
-            </th>
-            <th>
-              <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
-            </th>
-          </tr>
-        </table>
+    <div class="main-connect-contain">
+      <table class="main-connect-table">
+        <tr>
+          <th>
+            <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
+          </th>
+          <th>
+            <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
+          </th>
+          <th>
+            <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
+          </th>
+          <th>
+            <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
+          </th>
+          <th>
+            <img src="https://www.stockvote.com.tw/evote/images/zh_TW/index/btn_001.svg">
+          </th>
+        </tr>
+      </table>
 
-        <div class="main-connect-web">
-          <h2>相關網站</h2>
-          <p>金融監督管理委員會<br>
-            臺灣證券交易所<br>
-            臺灣期貨交易所<br>
-            證券櫃檯買賣中心<br>
-            臺灣集保結算所</p>
-        </div>
+      <div class="main-connect-web">
+        <h2>相關網站</h2>
+        <p>金融監督管理委員會<br>
+          臺灣證券交易所<br>
+          臺灣期貨交易所<br>
+          證券櫃檯買賣中心<br>
+          臺灣集保結算所</p>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
