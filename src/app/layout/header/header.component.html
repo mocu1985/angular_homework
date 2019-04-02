@@ -1,19 +1,27 @@
 <header class="c-header">
   <div class="c-header-content">
-      <img class="logo" src="https://www.stockvote.com.tw/evote/images/zh_TW/index/ic_tdcc_logo.svg">
-      <label class="toggle">
-          <img src="https://www.stockvote.com.tw/evote/images/zh_TW/btn_menu.svg" alt>
-      </label>
-      <div class="nav">
-          <ul class="c-header-ul" routerLinkActive="active">
-              <li class="header-li"><a href="">首頁</a></li>
-              <li class="header-li"><a>關於我們</a></li>
-              <li class="header-li"><a>活動消息</a></li>
-              <li class="header-li"><a>統計專區</a></li>
-              <li class="header-li"><a>Q&A</a></li>
-              <li class="header-li"><a>聯絡我們</a></li>
-              <li class="header-li" [routerLink]="['/', 'login']"><a>登入</a></li>
-          </ul>
-      </div>
+    <img class="logo" src="https://www.stockvote.com.tw/evote/images/zh_TW/index/ic_tdcc_logo.svg">
+    <label class="toggle">
+      <img src="https://www.stockvote.com.tw/evote/images/zh_TW/btn_menu.svg" alt>
+    </label>
+
+    <div class="c-header-user_info" *ngIf="isLogin">
+      <p class="c-header-user_info--text">您好，歡迎使用「股東e票通</p>
+      <p class="c-header-user_info--text">帳號： {{userId}}</p>
+    </div>
+
+
+    <div class="nav">
+      <ul class="c-header-ul" routerLinkActive="active">
+        <li class="header-li" [routerLink]="['']"><a>首頁</a></li>
+        <li class="header-li"><a>關於我們</a></li>
+        <li class="header-li"><a>活動消息</a></li>
+        <li class="header-li"><a>統計專區</a></li>
+        <li class="header-li"><a>Q&A</a></li>
+        <li class="header-li"><a>聯絡我們</a></li>
+        <li class="header-li" *ngIf="!isLogin" [routerLink]="['/', 'login']"><a>登入</a></li>
+        <li class="header-li" *ngIf="isLogin" (click)="logout()"><a>登出</a></li>
+      </ul>
+    </div>
   </div>
 </header>

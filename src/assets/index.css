@@ -122,6 +122,21 @@ li {
   padding: 3%;
 }
 
+.c-header-user_info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
+  max-width: 300px;
+  min-width: 100px;
+  word-wrap: break-word;
+}
+
+.c-header-user_info--text {
+  max-width: 400px;
+  min-width: 300px;
+  word-wrap: break-word;
+}
+
 .c-login-tab {
   background-color: #FF8229;
   padding: 10px;
@@ -145,6 +160,7 @@ li {
   flex-direction: row;
   margin-top: 20px;
   padding: 5px;
+  vertical-align: bottom;
 }
 
 .c-login-item-margin--right {
@@ -171,6 +187,7 @@ li {
 .c-login-label {
   width: 45%;
   text-align: right;
+  line-height: 20px;
 }
 
 .c-login-button {
@@ -426,6 +443,9 @@ footer {
     margin-right: 0;
   }
   .c-header-info {
+    display: none;
+  }
+  .c-header-user_info {
     display: none;
   }
   .logo {

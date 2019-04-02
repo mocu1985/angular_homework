@@ -21,16 +21,38 @@
 
       <li class="c-login-item">
         <label class="c-login-label">使用者帳號：</label>
-        <input class="c-login-input" type="text">
+        <fieldset class="c-login-input" [ngClass]="{'has-danger': email.dirty && email.invalid}">
+          <input name="email" type="text" placeholder="請輸入Email" [(ngModel)]="loginData.userId" required email
+            #email="ngModel">
+          <span *ngIf="email.dirty && email.invalid">
+            <span *ngIf="email.errors['required']">
+              * 請輸入 email
+            </span>
+            <span *ngIf="email.errors['email']">
+              * Email格式錯誤
+            </span>
+          </span>
+        </fieldset>
       </li>
 
-      <li class="c-login-item">
+      <li class="c-login-item" [ngClass]="{'has-danger': password.dirty && password.invalid}">
         <label class="c-login-label">使用者密碼：</label>
-        <input class="c-login-input" type="text">
+        <fieldset class="c-login-input">
+          <input name="password" type="text" placeholder="請輸入Password" [(ngModel)]="loginData.password" minlength="4"
+            required #password="ngModel">
+          <span *ngIf="password.dirty && password.invalid">
+            <span *ngIf="password.errors['required']">
+              * 請輸入密碼
+            </span>
+            <span *ngIf="password.errors['minlength']">
+              * 密碼長度必須大於等於4碼
+            </span>
+          </span>
+        </fieldset>
       </li>
 
       <li>
-        <button class="c-login-button" (click)="doLogin()">登入</button>
+        <button class="c-login-button" [disabled]="password.invalid" (click)="doLogin()">登入</button>
       </li>
     </ul>
   </div>

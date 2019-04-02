@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  loginData = {
+    userId: '',
+    password: ''
+  };
+
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -15,8 +21,8 @@ export class LoginComponent implements OnInit {
 
 
   doLogin() {
-    // this.router.navigate(['']);
-    alert('login');
+    sessionStorage.setItem('userId', this.loginData.userId);
+    this.router.navigate(['terms']);
   }
 
 }

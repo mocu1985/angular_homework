@@ -9,7 +9,6 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    // loadChildren: './layout/layout.module#LayoutModule',
     children: [
       {
         path: '',
@@ -34,7 +33,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -7,13 +7,14 @@ import { RouterModule } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { TermsComponent } from './terms/terms.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [FooterComponent, HeaderComponent, MainComponent, IndexComponent, LoginComponent, TermsComponent],
-  exports: [FooterComponent, HeaderComponent, MainComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ]
 })
 export class LayoutModule { }
